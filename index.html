@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FUTA Bus Lines</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Lap Trinh Web A+</title>
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="navbar-logo">FUTA Bus Lines</div>
+    <div class="navbar-logo">LAPTRINHWEB</div>
     <ul class="navbar-menu">
       <li><a href="#">Trang chủ</a></li>
       <li><a href="#">Lịch trình</a></li>
@@ -18,6 +18,13 @@
       <li><a href="#">Liên hệ</a></li>
       <li><a href="#">Về chúng tôi</a></li>
     </ul>
+    <div class="user-auth">
+      <button id="loginBtn">Đăng nhập/Đăng ký</button>
+      <span id="userInfo" class="hidden">
+        <!-- 👤 <span id="username">User</span>
+        <button id="logoutBtn">Đăng xuất</button> -->
+      </span>
+    </div>
   </nav>
 
   <!-- Booking Form -->
@@ -48,7 +55,11 @@
       <div class="input-group">
         <label>Số vé</label>
         <select id="tickets">
-          ${[...Array(10)].map((_, i) => `<option value="${i+1}">${i+1}</option>`).join('')}
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
       </div>
     </div>
@@ -56,6 +67,6 @@
     <button class="search-btn" onclick="searchTrip()">Tìm chuyến xe</button>
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

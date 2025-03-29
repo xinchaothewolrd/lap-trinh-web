@@ -1,24 +1,21 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+document.getElementById('swap').addEventListener('click', () => {
+  const fromInput = document.getElementById('from');
+  const toInput = document.getElementById('to');
+  const temp = fromInput.value;
+  fromInput.value = toInput.value;
+  toInput.value = temp;
+});
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+window.searchTrip = function () {
+  const from = document.getElementById('from').value;
+  const to = document.getElementById('to').value;
+  const date = document.getElementById('date').value;
+  const tickets = document.getElementById('tickets').value;
 
-setupCounter(document.querySelector('#counter'))
+  if (!from || !to || !date) {
+    alert("Vui lòng điền đầy đủ thông tin.");
+    return;
+  }
+
+  alert(`🔍 Tìm chuyến xe từ "${from}" đến "${to}" vào ngày ${date} cho ${tickets} vé.`);
+}
