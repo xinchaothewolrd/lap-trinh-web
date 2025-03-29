@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FUTA Bus Lines</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-logo">FUTA Bus Lines</div>
+    <ul class="navbar-menu">
+      <li><a href="#">Trang chủ</a></li>
+      <li><a href="#">Lịch trình</a></li>
+      <li><a href="#">Tra cứu vé</a></li>
+      <li><a href="#">Tin tức</a></li>
+      <li><a href="#">Liên hệ</a></li>
+      <li><a href="#">Về chúng tôi</a></li>
+    </ul>
+  </nav>
+
+  <!-- Booking Form -->
+  <div class="booking-container">
+    <div class="trip-type">
+      <label><input type="radio" name="trip" value="one-way" checked> Một chiều</label>
+      <label><input type="radio" name="trip" value="round-trip"> Khứ hồi</label>
+    </div>
+
+    <div class="booking-form">
+      <div class="input-group">
+        <label>Điểm đi</label>
+        <input type="text" id="from" placeholder="Chọn điểm đi">
+      </div>
+
+      <button id="swap" title="Đổi điểm đi và đến">⇄</button>
+
+      <div class="input-group">
+        <label>Điểm đến</label>
+        <input type="text" id="to" placeholder="Chọn điểm đến">
+      </div>
+
+      <div class="input-group">
+        <label>Ngày đi</label>
+        <input type="date" id="date">
+      </div>
+
+      <div class="input-group">
+        <label>Số vé</label>
+        <select id="tickets">
+          ${[...Array(10)].map((_, i) => `<option value="${i+1}">${i+1}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+
+    <button class="search-btn" onclick="searchTrip()">Tìm chuyến xe</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
