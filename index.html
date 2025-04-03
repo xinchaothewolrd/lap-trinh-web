@@ -1,72 +1,311 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lap Trinh Web A+</title>
-  <link rel="stylesheet" href="/src/style.css">
-</head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-logo">LAPTRINHWEB</div>
-    <ul class="navbar-menu">
-      <li><a href="#">Trang chủ</a></li>
-      <li><a href="#">Lịch trình</a></li>
-      <li><a href="#">Tra cứu vé</a></li>
-      <li><a href="#">Tin tức</a></li>
-      <li><a href="#">Liên hệ</a></li>
-      <li><a href="#">Về chúng tôi</a></li>
-    </ul>
-    <div class="user-auth">
-      <button id="loginBtn">Đăng nhập/Đăng ký</button>
-      <span id="userInfo" class="hidden">
-        <!-- 👤 <span id="username">User</span>
-        <button id="logoutBtn">Đăng xuất</button> -->
-      </span>
-    </div>
-  </nav>
-
-  <!-- Booking Form -->
-  <div class="booking-container">
-    <div class="trip-type">
-      <label><input type="radio" name="trip" value="one-way" checked> Một chiều</label>
-      <label><input type="radio" name="trip" value="round-trip"> Khứ hồi</label>
-    </div>
-
-    <div class="booking-form">
-      <div class="input-group">
-        <label>Điểm đi</label>
-        <input type="text" id="from" placeholder="Chọn điểm đi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lap Trinh Web A+</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-logo">LAPTRINHWEB</div>
+      <ul class="navbar-menu">
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Lịch trình</a></li>
+        <li><a href="#">Tra cứu vé</a></li>
+        <li><a href="#">Tin tức</a></li>
+        <li><a href="#" id="contactLink">Liên hệ</a></li>
+        <li><a href="#" id="aboutBtn">Về chúng tôi</a></li>
+      </ul>
+      <div class="user-auth">
+        <button id="loginBtn">Đăng nhập/Đăng ký</button>
+        <span id="userInfo" class="hidden">
+        </span>
       </div>
+    </nav>
 
-      <button id="swap" title="Đổi điểm đi và đến">⇄</button>
 
-      <div class="input-group">
-        <label>Điểm đến</label>
-        <input type="text" id="to" placeholder="Chọn điểm đến">
-      </div>
-
-      <div class="input-group">
-        <label>Ngày đi</label>
-        <input type="date" id="date">
-      </div>
-
-      <div class="input-group">
-        <label>Số vé</label>
-        <select id="tickets">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
+    <!-- Modal Đăng nhập/Đăng ký -->
+    <div id="authModal" class="auth-modal hidden">
+      <div class="auth-modal-content">
+        <span class="close-btn" id="closeAuthModal">&times;</span>
+        <h2 id="authTitle">Đăng nhập</h2>
+        <form id="authForm">
+          <div class="form-group">
+            <label for="phone">Số điện thoại:</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Nhập số điện thoại"
+              pattern="[0-9]{10,11}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+          </div>
+          <button type="submit" class="submit-btn">Đăng nhập</button>
+          <p id="toggleAuth">
+            Chưa có tài khoản? <span class="toggle-link">Đăng ký</span>
+          </p>
+        </form>
       </div>
     </div>
 
-    <button class="search-btn" onclick="searchTrip()">Tìm chuyến xe</button>
-  </div>
+    <main>
+    <!-- Booking Form -->
+    <div class="booking-container">
+      <div class="trip-type">
+        <label
+          ><input type="radio" name="trip" value="one-way" checked /> Một
+          chiều</label
+        >
+        <label
+          ><input type="radio" name="trip" value="round-trip" /> Khứ hồi</label
+        >
+      </div>
 
-  <script type="module" src="/src/main.js"></script>
-</body>
+      <div class="booking-form">
+        <div class="input-group">
+          <label>Điểm đi</label>
+          <input type="text" id="from" placeholder="Chọn điểm đi" />
+        </div>
+
+        <button id="swap" title="Đổi điểm đi và đến">⇄</button>
+
+        <div class="input-group">
+          <label>Điểm đến</label>
+          <input type="text" id="to" placeholder="Chọn điểm đến" />
+        </div>
+
+        <div class="input-group">
+          <label>Ngày đi</label>
+          <input type="date" id="date" />
+        </div>
+
+        <div class="input-group">
+          <label>Số vé</label>
+          <select id="tickets">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="search-btn" onclick="searchTrip()">Tìm chuyến xe</button>
+    </div>
+
+    <!-- Liên hệ -->
+    <div class="contact-container hidden" id="contactSection">
+      <main>
+        <div class="hero-section">
+          <img
+            src="./images/hailuan_lienhe.jpg"
+            alt="Dental care image"
+            class="hero-image"
+          />
+        </div>
+        <div class="contact-form-container">
+          <div class="container">
+            <div class="form-column">
+              <h2>GỬI EMAIL CHO CHÚNG TÔI</h2>
+              <p>
+                Vui lòng điền các thông tin sau khi gửi câu hỏi cho chúng tôi
+              </p>
+              <form id="contactForm">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your name *"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Your email address *"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Subject *"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Message *"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send message</button>
+              </form>
+            </div>
+
+            <div class="company-info-column">
+              <h3>Địa chỉ công ty</h3>
+              <h4>NHÀ XE HẢI LUÂN</h4>
+              <p>28/31 Lương Thế Vinh, P. Tân Thới Hòa</p>
+              <p><strong>Điện thoại:</strong> 0123456789</p>
+              <p><strong>Số Fax:</strong> 123456789</p>
+              <p><strong>Email:</strong> cskh@hailuan.com</p>
+              <p>
+                Nếu có bất kỳ thắc mắc gì, bạn hãy liên lạc với bộ phận chăm sóc
+                khách hàng của chúng tôi qua số điện thoại 1800-0000, từ
+                9:00-17:00 thứ Hai đến thứ Sáu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="aboutSection" class="hidden">
+      <div class="hero-sections">
+        <div class="intro">
+          <h1>NHÀ XE HẢI LUÂN</h1>
+          <p>
+            Nhà xe giường nằm Hải Luân tự hào là một trong những đơn vị vận tải
+            hành khách hàng đầu tại Việt Nam, với hơn 10 năm kinh nghiệm phục vụ
+            trên các tuyến đường liên tỉnh. Được thành lập với mong muốn mang
+            đến những hành trình an toàn, thoải mái và đáng nhớ cho khách hàng,
+            Hải Luân không ngừng nỗ lực để trở thành người bạn đồng hành tin cậy
+            trên mọi nẻo đường.
+          </p>
+        </div>
+        <div class="vision-mission">
+          <div class="text">
+            <h2>TẦM NHÌN VÀ SỨ MỆNH</h2>
+            <p>
+              <span style="font-weight: 800;">Tầm nhìn:</span> Hải Luân hướng tới trở thành thương hiệu vận tải hành
+              khách hàng đầu tại Việt Nam, được khách hàng yêu mến và tin tưởng
+              bởi chất lượng dịch vụ vượt trội và sự đổi mới không ngừng.
+            </p>
+            <br />
+            <p>
+              <span style="font-weight: 800;">Sứ mệnh:</span> Chúng tôi cam kết mang đến cho khách hàng những chuyến đi
+              an toàn, tiện nghi và đúng giờ, đồng thời góp phần nâng cao tiêu
+              chuẩn dịch vụ vận tải hành khách tại Việt Nam, tạo nên những trải
+              nghiệm đáng nhớ trên mỗi hành trình.
+            </p>
+          </div>
+          <img
+            src="./images/hailuan_vechungtoi1.jpg"
+            alt="Vision and Mission"
+          />
+        </div>
+        <div class="core-values">
+          <h2>GIÁ TRỊ CỐT LÕI</h2>
+          <div class="values-container">
+            <div class="value-item">
+              <h3>An toàn</h3>
+              <p>
+                Đặt sự an toàn của hành khách lên hàng đầu với đội ngũ tài xế
+                chuyên nghiệp và xe giường nằm hiện đại, được bảo dưỡng định kỳ.
+              </p>
+            </div>
+            <div class="value-item">
+              <h3>Chất lượng</h3>
+              <p>
+                Luôn chú trọng đến sự thoải mái và hài lòng của khách hàng thông
+                qua dịch vụ tận tâm và cơ sở vật chất cao cấp.
+              </p>
+            </div>
+            <div class="value-item">
+              <h3>Uy tín</h3>
+              <p>
+                Xây dựng niềm tin với khách hàng bằng sự đúng giờ, minh bạch và
+                chuyên nghiệp trong mọi hoạt động.
+              </p>
+            </div>
+            <div class="value-item">
+              <h3>Đổi mới</h3>
+              <p>
+                Liên tục cải tiến dịch vụ và ứng dụng công nghệ để đáp ứng nhu
+                cầu ngày càng cao của khách hàng.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="vision-mission">
+          <div class="vision-image"></div>
+          <img
+            src="./images/hailuan_vechungtoi2.jpg"
+            alt="Vision and Mission"
+          />
+          <div class="trietli">
+            <h2>CHIẾN LƯỢC PHÁT TRIỂN</h2>
+            <p>
+              Chiến lược phát triển: Trong thời gian tới, Hải Luân sẽ tiếp tục mở rộng mạng lưới tuyến đường, đầu tư vào đội xe giường nằm hiện đại với các tiện ích cao cấp như wifi miễn phí, ổ cắm sạc, 
+          và không gian nghỉ ngơi thoải mái hơn. Đồng thời, chúng tôi đẩy mạnh ứng dụng công nghệ trong việc đặt vé trực tuyến, quản lý hành trình và chăm sóc khách hàng, nhằm mang đến sự tiện lợi tối đa. Hải Luân cũng cam 
+          kết đào tạo đội ngũ nhân viên chuyên nghiệp hơn, xây dựng văn hóa doanh nghiệp bền vững và đóng góp tích cực cho cộng đồng.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <img src="./images/logo.png" alt="Nhà xe Hải Luân" class="footer-logo">
+          <h3>NHÀ XE HẢI LUÂN</h3>
+          <p>
+            Địa chỉ: 28/31 Lương Thế Vinh, P. Tân Thới Hòa<br />
+            Điện thoại: 0123456789<br />
+            Email: cskh@hailuan.com
+          </p>
+        </div>
+        <div class="footer-column">
+          <h3>LIÊN KẾT NHANH</h3>
+          <ul>
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Lịch trình</a></li>
+            <li><a href="#">Tra cứu vé</a></li>
+            <li><a href="#">Tin tức</a></li>
+            <li><a href="#" id="contactLink">Liên hệ</a></li>
+            <li><a href="#" id="aboutBtn">Về chúng tôi</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>THEO DÕI CHÚNG TÔI</h3>
+          <div class="social-icons">
+            <img src="./images/Facebook_Logo_(2019).png" alt="" >
+            <img src="./images/Instagram_icon.png" alt="">
+            <img src="./images/Icon_of_Zalo.png" alt="" class="zalo">
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 NHÀ XE HẢI LUÂN. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
