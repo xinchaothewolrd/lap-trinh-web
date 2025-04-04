@@ -13,6 +13,18 @@ const homeLink = document.querySelector(".navbar-menu li:nth-child(1) a"); // Li
 const scheduleLink = document.getElementById("scheduleLink");
 const ticketLink = document.getElementById("ticketLink");
 const newsLink = document.getElementById("newsLink");
+const sliderSection = document.getElementById("sliderSection");
+const popularSection = document.getElementById("popularSection");
+const futaSection = document.getElementById("futaSection");
+const bookingbannerSection = document.getElementById("bookingbannerSection");
+// Hàm làm nổi bật link được chọn
+function setActiveLink(link) {
+  document.querySelectorAll(".navbar-menu a").forEach((a) => {
+    a.classList.remove("active");
+  });
+  link.classList.add("active");
+}
+
 
 // Hàm để ẩn tất cả các section
 function hideAllSections() {
@@ -22,6 +34,10 @@ function hideAllSections() {
   scheduleSection.classList.add("hidden");
   ticketSection.classList.add("hidden");
   newsSection.classList.add("hidden");
+  sliderSection.classList.add("hidden"); 
+  popularSection.classList.add("hidden");
+  futaSection.classList.add("hidden");
+  bookingbannerSection.classList.add("hidden");
   // Không ẩn modal
 }
 
@@ -35,34 +51,55 @@ function showSection(section) {
 homeLink.addEventListener("click", (e) => {
   e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
   showSection(bookingContainer);
+  sliderSection.classList.remove("hidden");
+  popularSection.classList.remove("hidden");
+  futaSection.classList.remove("hidden");
+  bookingbannerSection.classList.remove("hidden");
+  setActiveLink(homeLink); 
 });
 
 scheduleLink.addEventListener("click", (e) => {
   e.preventDefault();
   showSection(scheduleSection);
+  setActiveLink(scheduleLink);
 });
 
 ticketLink.addEventListener("click", (e) => {
   e.preventDefault();
   showSection(ticketSection);
+  setActiveLink(ticketLink);
 });
 
 newsLink.addEventListener("click", (e) => {
   e.preventDefault();
   showSection(newsSection);
+  setActiveLink(newsLink);
 });
 
 // Xử lý sự kiện click cho liên kết "Liên hệ"
 contactLink.addEventListener("click", (e) => {
   e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
   showSection(contactSection);
+  setActiveLink(contactLink);
 });
 
 // Xử lý sự kiện click cho liên kết "Về chúng tôi"
 aboutBtn.addEventListener("click", (e) => {
   e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
   showSection(aboutSection);
+  setActiveLink(aboutBtn);
 });
+
+// Bắt sự kiện khi click vào thẻ tuyến phổ biến
+document.querySelectorAll(".popular-routes .route-item").forEach(item => {
+  item.addEventListener("click", () => {
+    hideAllSections();
+    document.getElementById("scheduleSection").classList.remove("hidden");
+    setActiveLink(document.getElementById("scheduleLink"));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
 
 // Xử lý form đặt vé (hàm searchTrip đã có trong HTML)
 function searchTrip() {
@@ -79,8 +116,23 @@ function searchTrip() {
   alert(
     `Tìm chuyến xe từ ${from} đến ${to} vào ngày ${date} với ${tickets} vé.`
   );
-  // Ở đây bạn có thể thêm logic để tìm kiếm chuyến xe, ví dụ gọi API hoặc hiển thị danh sách chuyến xe.
 }
+
+// Khuyen mai uu dai
+let promoIndex = 0;
+const track = document.querySelector(".slide-track");
+const slides = document.querySelectorAll(".slide");
+const slideWidth = slides[0].offsetWidth + 20; // 360 + 20 = 380
+
+function showPromoSlides() {
+  promoIndex++;
+  if (promoIndex > slides.length - 3) promoIndex = 0; // quay lại đầu nếu hết
+  track.style.transform = `translateX(-${promoIndex * slideWidth}px)`;
+}
+
+setInterval(showPromoSlides, 4000); // 4 giây trượt 1 lần
+
+
 
 // Xử lý form liên hệ
 document.getElementById("contactForm").addEventListener("submit", function (e) {
@@ -184,7 +236,6 @@ document.addEventListener("DOMContentLoaded", function () {
       alert(
         `Bạn đang đặt vé cho chuyến ${route} khởi hành lúc ${time} với giá ${price}`
       );
-      // Trong thực tế, bạn sẽ chuyển hướng đến trang đặt vé hoặc mở modal đặt vé
     });
   });
 });

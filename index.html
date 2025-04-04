@@ -6,13 +6,19 @@
     <title>Lap Trinh Web A+</title>
     <link rel="stylesheet" href="/src/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="public/favicon.png">
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar">
-      <div class="navbar-logo">LAPTRINHWEB</div>
+      <div class="navbar-logo">
+        <img src = "public/logo.jpg" alt ="logo" class="logo-img">
+        <span>
+        HAILUANLIMOUSINE
+        </span>
+      </div>
       <ul class="navbar-menu">
-        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#" id="homeLink" class="active">Trang chủ</a></li>
         <li><a href="#" id="scheduleLink">Lịch trình</a></li>
         <li><a href="#" id="ticketLink">Tra cứu vé</a></li>
         <li><a href="#" id="newsLink">Tin tức</a></li>
@@ -63,6 +69,12 @@
     </div>
 
     <main>
+
+    <div id="bookingbannerSection" id="hidden">
+    <div class="booking-banner">
+      <img src="images/hailuan_banner.jpg" alt="Banner" class="booking-banner-img" />
+    </div>
+    </div>
     <!-- Booking Form -->
     <div class="booking-container">
       <div class="trip-type">
@@ -107,7 +119,148 @@
 
       <button class="search-btn" onclick="searchTrip()">Tìm chuyến xe</button>
     </div>
+
+    <div class="promotion-section" id="sliderSection">
+      <h2 class="promotion-title">KHUYẾN MÃI NỔI BẬT</h2>
+      <div class="multi-slider">
+        <div class="slide-track">
+          <img src="images/img1.png" class="slide" />
+          <img src="images/img2.png" class="slide" />
+          <img src="images/img3.png" class="slide" />
+          <img src="images/img4.png" class="slide" />
+          <img src="images/img5.png" class="slide" />
+          <img src="images/img6.png" class="slide" />
+
+        </div>
+      </div>
+    </div>
     
+  <div id="popularSection" >
+    <div class="popular-routes">
+      <h2 class="section-title">TUYẾN PHỔ BIẾN</h2>
+      <p class="section-subtitle">Được khách hàng tin tưởng và lựa chọn</p>
+      <div class="route-cards">
+        <!-- Card 1 -->
+        <div class="route-item">
+        <div class="route-card">
+          <div class="card-header" style="background-image: url('images/hcm.png')">
+            <h3>Tuyến xe từ<br><strong>Tp Hồ Chí Minh</strong></h3>
+          </div>
+          <div class="card-body">
+            <div class="route-item">
+              <div>
+                <p class="destination">Đà Lạt</p>
+                <p class="route-info">305km - 8 giờ - 04/04/2025</p>
+              </div>
+              <p class="price">290.000đ</p>
+            </div>
+            <div class="route-item">
+              <div>
+                <p class="destination">Cần Thơ</p>
+                <p class="route-info">166km - 5 giờ 30 phút - 04/04/2025</p>
+              </div>
+              <p class="price">165.000đ</p>
+            </div>
+            <div class="route-item">
+              <div>
+                <p class="destination">Long Xuyên</p>
+                <p class="route-info">203km - 5 giờ - 04/04/2025</p>
+              </div>
+              <p class="price">190.000đ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Card 2 -->
+      <div class="route-item">
+        <div class="route-card">
+          <div class="card-header" style="background-image: url('images/dalat.png')">
+            <h3>Tuyến xe từ<br><strong>Đà Lạt</strong></h3>
+          </div>
+          <div class="card-body">
+            <div class="route-item">
+              <div>
+                <p class="destination">TP. Hồ Chí Minh</p>
+                <p class="route-info">310km - 8 giờ - 04/04/2025</p>
+              </div>
+              <p class="price">290.000đ</p>
+            </div>
+            <div class="route-item">
+              <div>
+                <p class="destination">Đà Nẵng</p>
+                <p class="route-info">757km - 17 giờ - 04/04/2025</p>
+              </div>
+              <p class="price">410.000đ</p>
+            </div>
+            <div class="route-item">
+              <div>
+                <p class="destination">Cần Thơ</p>
+                <p class="route-info">457km - 11 giờ - 04/04/2025</p>
+              </div>
+              <p class="price">435.000đ</p>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="route-item">
+        <div class="route-card">
+          <div class="card-header" style="background-image: url('images/danang.png')">
+            <h3>Tuyến xe từ<br><strong>Đà Nẵng</strong></h3>
+          </div>
+          <div class="card-body">
+            <div class="route-item">
+              <div>
+                <p class="destination">Đà Lạt</p>
+                <p class="route-info">666km - 17 giờ - 04/04/2025</p>
+              </div>
+              <p class="price">410.000đ</p>
+            </div>
+            <div class="route-item">
+              <div>
+                <p class="destination">BX An Sương</p>
+                <p class="route-info">966km - 20 giờ - 04/04/2025</p>
+              </div>
+              <p class="price">470.000đ</p>
+            </div>
+            <div class="route-item">
+              <div>
+                <p class="destination">Nha Trang</p>
+                <p class="route-info">528km - 9 giờ 25 phút - 04/04/2025</p>
+              </div>
+              <p class="price">370.000đ</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Ket noi -->
+   <div id="futaSection" >
+  <div class="futa-connect">
+    <h2 class="futa-title">KẾT NỐI HAILUAN GROUP</h2>
+    <p class="futa-subtitle">
+      Kết nối đa dạng hệ sinh thái FUTA Group qua App HAILUAN: mua vé Xe Hải Luân, Xe Buýt, Xe Hợp Đồng, Giao Hàng,...
+    </p>
+    <div class="futa-services">
+      <div class="futa-service">
+        <img src="images/iconhl2.png" alt="Xe Hợp Đồng" />
+        <p>Xe Hợp Đồng</p>
+      </div>
+      <div class="futa-service">
+        <img src="images/iconhl3.png" alt="Mua vé Phương Trang" />
+        <p class="highlight">Mua vé Hai Luân </p>
+      </div>
+      <div class="futa-service">
+        <img src="images/iconhl1.png" alt="Giao Hàng" />
+        <p>Giao Hàng</p>
+      </div>
+    </div>
+  </div>
+  </div>
+
     <!-- lich trinh  -->
     <main class="schedule-container hidden" id="scheduleSection">
       <div class="schedule-header">
