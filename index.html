@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lap Trinh Web A+</title>
-    <link rel="stylesheet" href="/src/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="navbar-logo">LAPTRINHWEB</div>
-      <ul class="navbar-menu">
-        <li><a href="#">Trang chủ</a></li>
-        <li><a href="#">Lịch trình</a></li>
-        <li><a href="#">Tra cứu vé</a></li>
-        <li><a href="#">Tin tức</a></li>
-        <li><a href="#" id="contactLink">Liên hệ</a></li>
-        <li><a href="#" id="aboutBtn">Về chúng tôi</a></li>
-      </ul>
-      <div class="user-auth">
-        <button id="loginBtn">Đăng nhập/Đăng ký</button>
-        <span id="userInfo" class="hidden">
-        </span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lap Trinh Web A+</title>
+  <link rel="stylesheet" href="/src/style.css">
+  <link rel="icon" type="image/png" href="public/favicon.png">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src = "public/logo.jpg" alt="logo" class="logo-img" />
+      Nha xe Hai Luan
+    </div>
+    <ul class="navbar-menu">
+      <li><a href="#">Trang chủ</a></li>
+      <li><a href="#">Lịch trình</a></li>
+      <li><a href="#">Tra cứu vé</a></li>
+      <li><a href="#">Tin tức</a></li>
+      <li><a href="#">Liên hệ</a></li>
+      <li><a href="#">Về chúng tôi</a></li>
+    </ul>
+    <div class="user-auth">
+      <button id="loginBtn">Đăng nhập/Đăng ký</button>
+      <span id="userInfo" class="hidden">
+        <!-- 👤 <span id="username">User</span>
+        <button id="logoutBtn">Đăng xuất</button> -->
+      </span>
+    </div>
+  </nav>
+
+  <!-- Booking Form -->
+  <div class="booking-container">
+    <div class="trip-type">
+      <label><input type="radio" name="trip" value="one-way" checked> Một chiều</label>
+      <label><input type="radio" name="trip" value="round-trip"> Khứ hồi</label>
+    </div>
+
+    <div class="booking-form">
+      <div class="input-group">
+        <label>Điểm đi</label>
+        <input type="text" id="from" placeholder="Chọn điểm đi">
       </div>
-    </nav>
-
-
     <!-- Modal Đăng nhập/Đăng ký -->
     <div id="authModal" class="auth-modal hidden">
       <div class="auth-modal-content">
@@ -184,7 +200,7 @@
       </main>
     </div>
 
-    <div id="aboutSection" class="hidden">
+    <nav id="aboutSection" class="hidden">
       <div class="hero-sections">
         <div class="intro">
           <h1>NHÀ XE HẢI LUÂN</h1>
@@ -267,6 +283,8 @@
         </div>
       </div>
     </div>
+    </nav>
+
   </main>
     
     <!-- Footer -->
