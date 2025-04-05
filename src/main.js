@@ -150,14 +150,11 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
   this.reset();
 });
 
-// Hiển thị modal khi nhấn nút "Đăng nhập/Đăng ký"
+// Hiển thị modal Đăng nhập/Đăng ký
 document.getElementById("loginBtn").addEventListener("click", () => {
   const modal = document.getElementById("authModal");
   modal.classList.remove("hidden");
-  document.getElementById("authTitle").textContent = "Đăng nhập";
-  document.querySelector(".submit-btn").textContent = "Đăng nhập";
-  document.getElementById("toggleAuth").innerHTML =
-    'Chưa có tài khoản? <span class="toggle-link">Đăng ký</span>';
+  setAuthMode("login"); // Mặc định là Đăng nhập
 });
 
 // Đóng modal khi nhấn nút đóng
@@ -165,27 +162,66 @@ document.getElementById("closeAuthModal").addEventListener("click", () => {
   document.getElementById("authModal").classList.add("hidden");
 });
 
-// Đóng modal khi nhấn ra ngoài modal
-document.getElementById("authModal").addEventListener("click", (e) => {
-  if (e.target === document.getElementById("authModal")) {
-    document.getElementById("authModal").classList.add("hidden");
+// Chuyển đổi giữa Đăng nhập và Đăng ký
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("toggle-link")) {
+    const currentMode = document.getElementById("authTitle").textContent;
+    setAuthMode(currentMode === "Đăng nhập" ? "register" : "login");
   }
 });
 
-// Xử lý chuyển đổi giữa Đăng nhập và Đăng ký
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("toggle-link")) {
-    const isLogin =
-      document.getElementById("authTitle").textContent === "Đăng nhập";
-    document.getElementById("authTitle").textContent = isLogin
-      ? "Đăng ký"
-      : "Đăng nhập";
-    document.querySelector(".submit-btn").textContent = isLogin
-      ? "Đăng ký"
-      : "Đăng nhập";
-    document.getElementById("toggleAuth").innerHTML = isLogin
-      ? 'Đã có tài khoản? <span class="toggle-link">Đăng nhập</span>'
-      : 'Chưa có tài khoản? <span class="toggle-link">Đăng ký</span>';
+// Hàm thiết lập chế độ Đăng nhập hoặc Đăng ký
+function setAuthMode(mode) {
+  const authTitle = document.getElementById("authTitle");
+  const passwordGroup = document.getElementById("passwordGroup");
+  const confirmPasswordGroup = document.getElementById("confirmPasswordGroup");
+  const submitBtn = document.querySelector(".submit-btn");
+  const toggleAuth = document.getElementById("toggleAuth");
+
+  if (mode === "login") {
+    authTitle.textContent = "Đăng nhập";
+    passwordGroup.style.display = "block";
+    confirmPasswordGroup.style.display = "none"; // Ẩn trường xác nhận mật khẩu
+    submitBtn.textContent = "Đăng nhập";
+    toggleAuth.innerHTML = 'Chưa có tài khoản? <span class="toggle-link">Đăng ký</span>';
+  } else {
+    authTitle.textContent = "Đăng ký";
+    passwordGroup.style.display = "block";
+    confirmPasswordGroup.style.display = "block"; // Hiển thị trường xác nhận mật khẩu
+    submitBtn.textContent = "Đăng ký";
+    toggleAuth.innerHTML = 'Đã có tài khoản? <span class="toggle-link">Đăng nhập</span>';
+  }
+}
+
+// Xử lý form Đăng nhập/Đăng ký
+document.getElementById("authForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const mode = document.getElementById("authTitle").textContent;
+  const phone = document.getElementById("phone").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (!phone) {
+    alert("Vui lòng nhập số điện thoại!");
+    return;
+  }
+
+  if (mode === "Đăng nhập") {
+    if (!password) {
+      alert("Vui lòng nhập mật khẩu!");
+      return;
+    }
+    alert(`Đăng nhập thành công với số điện thoại: ${phone}`);
+  } else {
+    if (!password || !confirmPassword) {
+      alert("Vui lòng nhập đầy đủ mật khẩu và xác nhận mật khẩu!");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Mật khẩu và xác nhận mật khẩu không khớp!");
+      return;
+    }
+    alert(`Đăng ký thành công với số điện thoại: ${phone}`);
   }
 });
 
@@ -419,3 +455,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
