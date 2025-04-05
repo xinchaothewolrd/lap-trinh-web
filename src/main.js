@@ -1,5 +1,3 @@
-// src/main.js
-
 // Lấy các phần tử DOM
 const bookingContainer = document.querySelector(".booking-container");
 const contactSection = document.getElementById("contactSection");
@@ -118,7 +116,7 @@ function searchTrip() {
   );
 }
 
-// Khuyen mai uu dai
+// Xử lý slider Khuyễn Mãi
 let promoIndex = 0;
 const track = document.querySelector(".slide-track");
 const slides = document.querySelectorAll(".slide");
@@ -221,7 +219,6 @@ document.addEventListener("DOMContentLoaded", function () {
     alert(
       `Đang tìm kiếm chuyến xe từ ${departure} đến ${destination} vào ngày ${date}`
     );
-    // Trong thực tế, bạn sẽ gọi API hoặc lọc dữ liệu từ backend
   });
 
   // Xử lý sự kiện nút đặt vé
